@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wählergemeinschaft Schuby</title>
+    <style>
+        :root {
+            --primary-green: #5CB35C;
+            --secondary-yellow: #FFD700;
+            --secondary-blue: #0066CC;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-gray);
+            background-color: var(--white);
+        }
+
+        header {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            background-color: var(--white);
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 600;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--light-gray);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-green);
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 0.5rem;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--primary-green);
+        }
+
+        .card h3 {
+            margin: 0.5rem 0;
+            color: var(--primary-green);
+        }
+
+        .card p {
+            margin: 0.5rem 0;
+            color: var(--dark-gray);
+        }
+
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .newsletter-section {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .newsletter-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--white);
+        }
+
+        .newsletter-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #4a9d4a;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Wählergemeinschaft Schuby</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#start">Start</a></li>
+            <li><a href="#themen">Aktuelle Themen</a></li>
+            <li><a href="#gemeindevertreter">Gemeindevertreter</a></li>
+            <li><a href="#vorstand">Vorstand</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Startseite -->
+        <section id="start">
+            <h2>Willkommen bei der Wählergemeinschaft Schuby</h2>
+            <p>
+                Hier finden Sie aktuelle Informationen über unsere Arbeit, unsere Ziele und die Menschen,
+                die sich für unsere Gemeinde einsetzen.
+            </p>
+            <p>
+                Bleiben Sie auf dem Laufenden mit unseren neuesten Themen und Projekten.
+            </p>
+        </section>
+
+        <!-- Aktuelle Themen -->
+        <section id="themen">
+            <h2>Aktuelle Themen</h2>
+            <div class="newsletter-section">
+                <div class="newsletter-item">
+                    <h3>Neues aus dem Newsletter - Juli 2026</h3>
+                    <p>
+                        Hier steht ein aktuelles Thema aus unserem Newsletter.
+                        Dieser Abschnitt kann einfach durch neue Inhalte ersetzt werden.
+                    </p>
+                </div>
+                <div class="newsletter-item">
+                    <h3>Veranstaltungshinweis</h3>
+                    <p>
+                        Unsere nächste öffentliche Sitzung findet am 15. Juli 2026 um 19:00 Uhr im Gemeindesaal statt.
+                        Alle Bürger sind herzlich eingeladen.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gemeindevertreter -->
+        <section id="gemeindevertreter">
+            <h2>Gemeindevertreter</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="images/max-mustermann.jpg" alt="Max Mustermann">
+                    <h3>Max Mustermann</h3>
+                    <p><strong>Funktion:</strong> Gemeindevertreter</p>
+                    <p>Kurze Beschreibung der Funktion und Aufgaben.</p>
+                </div>
+                <div class="card">
+                    <img src="images/anna-beispiel.jpg" alt="Anna Beispiel">
+                    <h3>Anna Beispiel</h3>
+                    <p><strong>Funktion:</strong> Gemeindevertreterin</p>
+                    <p>Kurze Beschreibung der Funktion und Aufgaben.</p>
+                </div>
+                <div class="card">
+                    <img src="images/peter-muster.jpg" alt="Peter Muster">
+                    <h3>Peter Muster</h3>
+                    <p><strong>Funktion:</strong> Gemeindevertreter</p>
+                    <p>Kurze Beschreibung der Funktion und Aufgaben.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vorstand -->
+        <section id="vorstand">
+            <h2>Vorstand</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="images/john-doe.jpg" alt="John Doe">
+                    <h3>John Doe</h3>
+                    <p><strong>Funktion:</strong> 1. Vorsitzender</p>
+                    <p>Verantwortlich für die Leitung der Wählergemeinschaft.</p>
+                </div>
+                <div class="card">
+                    <img src="images/jane-smith.jpg" alt="Jane Smith">
+                    <h3>Jane Smith</h3>
+                    <p><strong>Funktion:</strong> 2. Vorsitzende</p>
+                    <p>Unterstützt den Vorsitzenden in allen Belangen.</p>
+                </div>
+                <div class="card">
+                    <img src="images/michael-johnson.jpg" alt="Michael Johnson">
+                    <h3>Michael Johnson</h3>
+                    <p><strong>Funktion:</strong> Kassenwart</p>
+                    <p>Verantwortlich für die Finanzen der Wählergemeinschaft.</p>
+                </div>
+                <div class="card">
+                    <img src="images/emily-davis.jpg" alt="Emily Davis">
+                    <h3>Emily Davis</h3>
+                    <p><strong>Funktion:</strong> Schriftführerin</p>
+                    <p>Protokolliert Sitzungen und verwaltet Dokumente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontakt -->
+        <section id="kontakt">
+            <h2>Kontakt</h2>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <label for="name">Ihr Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Ihre E-Mail:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="subject">Betreff:</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Bitte wählen</option>
+                        <option value="Anfrage">Allgemeine Anfrage</option>
+                        <option value="Mitgliedschaft">Mitgliedschaft</option>
+                        <option value="Feedback">Feedback</option>
+                    </select>
+
+                    <label for="message">Ihre Nachricht:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit">Nachricht senden</button>
+                </form>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--dark-gray);">
+                    <strong>E-Mail:</strong> kontakt@waehlergemeinschaft-schuby.de
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Wählergemeinschaft Schuby. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
