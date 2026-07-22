@@ -40,6 +40,21 @@
             background-color: var(--white);
             padding: 0.5rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            line-height: 1;
+            color: var(--dark-gray);
+            cursor: pointer;
+            padding: 0.25rem 0.75rem;
+            margin: 0 auto;
         }
 
         nav ul {
@@ -52,7 +67,7 @@
         }
 
         nav li {
-            margin: 0 1rem;
+            margin: 0 0.75rem;
         }
 
         nav a {
@@ -62,6 +77,7 @@
             padding: 0.5rem;
             border-radius: 4px;
             transition: background-color 0.3s;
+            font-size: 0.95rem;
         }
 
         nav a:hover {
@@ -75,7 +91,7 @@
         }
 
         section {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         h2 {
@@ -84,9 +100,15 @@
             padding-bottom: 0.5rem;
         }
 
+        h3.subheading {
+            color: var(--secondary-blue);
+            margin-top: 1.5rem;
+        }
+
+        /* Personen-Kacheln (Gemeindevertreter & Vorstand) */
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 1.5rem;
             margin-top: 1rem;
         }
@@ -95,7 +117,7 @@
             background-color: var(--white);
             border: 1px solid var(--light-gray);
             border-radius: 8px;
-            padding: 1rem;
+            padding: 1.25rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
@@ -113,34 +135,90 @@
             font-size: 2rem;
             font-weight: 700;
             border: 3px solid var(--secondary-blue);
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .card h3 {
-            margin: 0.5rem 0;
+            margin: 0.5rem 0 0.25rem;
             color: var(--primary-green);
         }
 
-        .card p {
-            margin: 0.5rem 0;
+        .card .funktion {
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+
+        .card .detail-row {
+            text-align: left;
+            font-size: 0.92rem;
+            margin: 0.3rem 0;
+        }
+
+        .card .detail-row strong {
             color: var(--dark-gray);
         }
 
-        footer {
-            background-color: var(--primary-green);
-            color: var(--white);
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-
-        footer a {
-            color: var(--white);
-            text-decoration: underline;
-        }
-
-        footer .footer-links {
+        .badge-deputy {
+            display: inline-block;
+            background-color: var(--secondary-yellow);
+            color: var(--dark-gray);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
             margin-top: 0.5rem;
+        }
+
+        .card a.mail-link {
+            color: var(--secondary-blue);
             font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        /* Termin-Kacheln */
+        .termin-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .termin-card {
+            background-color: var(--light-gray);
+            border-left: 5px solid var(--primary-green);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+        }
+
+        .termin-card h4 {
+            margin: 0 0 0.5rem;
+            color: var(--dark-gray);
+        }
+
+        .termin-card p {
+            margin: 0.25rem 0;
+            font-size: 0.95rem;
+        }
+
+        .termin-card .icon {
+            display: inline-block;
+            width: 1.3rem;
+        }
+
+        .placeholder-note {
+            background-color: #fff3cd;
+            border: 1px solid #ffe08a;
+            color: #6b5300;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .newsletter-section {
@@ -203,23 +281,40 @@
             background-color: #4a9d4a;
         }
 
-        .placeholder-note {
-            background-color: #fff3cd;
-            border: 1px solid #ffe08a;
-            color: #6b5300;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        footer .footer-links {
+            margin-top: 0.5rem;
             font-size: 0.9rem;
-            margin-bottom: 1rem;
         }
 
         @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
             nav ul {
+                display: none;
                 flex-direction: column;
                 align-items: center;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            nav ul.open {
+                display: flex;
             }
             nav li {
-                margin: 0.5rem 0;
+                margin: 0.4rem 0;
             }
         }
     </style>
@@ -230,14 +325,27 @@
     </header>
 
     <nav>
-        <ul>
+        <button class="nav-toggle" aria-label="Menü öffnen/schließen" onclick="document.getElementById('hauptmenue').classList.toggle('open')">☰</button>
+        <ul id="hauptmenue">
             <li><a href="#start">Start</a></li>
-            <li><a href="#themen">Aktuelle Themen</a></li>
+            <li><a href="#themen">Aktuelles</a></li>
             <li><a href="#gemeindevertreter">Gemeindevertreter</a></li>
+            <li><a href="#termine-gv">Nächste Termine der Gemeindevertretung</a></li>
+            <li><a href="#termine-ausschuss">Termine der Ausschüsse</a></li>
+            <li><a href="#termine-wg">WG-Termine</a></li>
             <li><a href="#vorstand">Vorstand</a></li>
             <li><a href="#kontakt">Kontakt</a></li>
         </ul>
     </nav>
+
+    <script>
+        // Menü nach Klick auf einen Link automatisch schließen (nur relevant auf dem Handy)
+        document.querySelectorAll('#hauptmenue a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                document.getElementById('hauptmenue').classList.remove('open');
+            });
+        });
+    </script>
 
     <main>
         <!-- Startseite -->
@@ -248,29 +356,19 @@
                 die sich für unsere Gemeinde einsetzen.
             </p>
             <p>
-                Bleiben Sie auf dem Laufenden mit unseren neuesten Themen und Projekten.
+                Bleiben Sie auf dem Laufenden mit unseren neuesten Themen und Terminen.
             </p>
         </section>
 
-        <!-- Aktuelle Themen -->
+        <!-- Aktuelle Themen / News (unverändert, wird separat weiter automatisiert) -->
         <section id="themen">
-            <h2>Aktuelle Themen</h2>
-            <div class="placeholder-note">
-                Hinweis (nur für die Redaktion sichtbar im Quelltext, nicht für Besucher gedacht): Die folgenden Einträge sind Platzhalter und sollten zeitnah durch echte Inhalte ersetzt werden.
-            </div>
+            <h2>Aktuelles</h2>
             <div class="newsletter-section">
                 <div class="newsletter-item">
                     <h3>Neues aus dem Newsletter – Juli 2026</h3>
                     <p>
-                        Hier steht ein aktuelles Thema aus unserem Newsletter.
-                        Dieser Abschnitt kann einfach durch neue Inhalte ersetzt werden.
-                    </p>
-                </div>
-                <div class="newsletter-item">
-                    <h3>Veranstaltungshinweis</h3>
-                    <p>
-                        Unsere nächste öffentliche Sitzung findet am 15. August 2026 um 19:30 Uhr im Sportlerheim statt.
-                        Alle Bürger sind herzlich eingeladen.
+                        Hier steht eine kurze Zusammenfassung unseres monatlichen Newsletters.
+                        Dieser Abschnitt wird künftig automatisiert befüllt.
                     </p>
                 </div>
             </div>
@@ -279,24 +377,133 @@
         <!-- Gemeindevertreter -->
         <section id="gemeindevertreter">
             <h2>Gemeindevertreter</h2>
+            <div class="placeholder-note">
+                Namen, Ausschüsse und Rollen sind aktuell. Fotos sind noch Platzhalter-Avatare mit Initialen –
+                sobald ein Foto vorliegt, kann das entsprechende <code>avatar</code>-Div durch ein &lt;img&gt;-Tag ersetzt werden.
+            </div>
             <div class="card-container">
+
                 <div class="card">
-                    <div class="avatar">MM</div>
-                    <h3>Max Mustermann</h3>
-                    <p><strong>Funktion:</strong> Gemeindevertreter</p>
-                    <p>Kurze Beschreibung der Funktion und Aufgaben.</p>
+                    <div class="avatar"><img src="images/volker-hagge-ellhoeft.jpg" alt="Volker Hagge Ellhöft"></div>
+                    <h3>Volker Hagge Ellhöft</h3>
+                    <p class="funktion">Gemeindevertreter</p>
+                    <p class="detail-row"><strong>Ausschuss:</strong> Finanzausschuss</p>
+                    <p class="detail-row"><strong>Rolle:</strong> Vorsitzender</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
+                    <span class="badge-deputy">Fraktionsvorsitzender</span>
                 </div>
+
                 <div class="card">
-                    <div class="avatar">AB</div>
-                    <h3>Anna Beispiel</h3>
-                    <p><strong>Funktion:</strong> Gemeindevertreterin</p>
-                    <p>Kurze Beschreibung der Funktion und Aufgaben.</p>
+                    <div class="avatar"><img src="images/carsten-carstensen-wendt.jpg" alt="Carsten Carstensen-Wendt"></div>
+                    <h3>Carsten Carstensen-Wendt</h3>
+                    <p class="funktion">Gemeindevertreter</p>
+                    <p class="detail-row"><strong>Ausschuss:</strong> Amtsausschuss</p>
+                    <p class="detail-row"><strong>Rolle:</strong> Mitglied</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
+                    <span class="badge-deputy">2. Stellv. Bürgermeister</span>
                 </div>
+
                 <div class="card">
-                    <div class="avatar">PM</div>
-                    <h3>Peter Muster</h3>
-                    <p><strong>Funktion:</strong> Gemeindevertreter</p>
-                    <p>Kurze Beschreibung der Funktion und Aufgaben.</p>
+                    <div class="avatar"><img src="images/kai-trenktrog.jpg" alt="Dr. Kai Trenktrog"></div>
+                    <h3>Dr. Kai Trenktrog</h3>
+                    <p class="funktion">Gemeindevertreter</p>
+                    <p class="detail-row"><strong>Ausschuss:</strong> UVE-Ausschuss</p>
+                    <p class="detail-row"><strong>Rolle:</strong> Mitglied</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
+                </div>
+
+                <div class="card">
+                    <div class="avatar"><img src="images/elke-sakautzky.jpg" alt="Elke Sakautzky"></div>
+                    <h3>Elke Sakautzky</h3>
+                    <p class="funktion">Gemeindevertreterin</p>
+                    <p class="detail-row"><strong>Ausschuss:</strong> Bauausschuss</p>
+                    <p class="detail-row"><strong>Rolle:</strong> Mitglied</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
+                </div>
+
+                <div class="card">
+                    <div class="avatar"><img src="images/anneke-hinz.jpg" alt="Anneke Hinz"></div>
+                    <h3>Anneke Hinz</h3>
+                    <p class="funktion">Bürgerliches Mitglied</p>
+                    <p class="detail-row"><strong>Ausschuss:</strong> Jugend-, Kultur- und Sportausschuss</p>
+                    <p class="detail-row"><strong>Rolle:</strong> Mitglied</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Termine der Gemeindevertretung -->
+        <section id="termine-gv">
+            <h2>Nächste Termine der Gemeindevertretung</h2>
+            <div class="placeholder-note">
+                Platzhalter-Termine – bitte durch echte Sitzungstermine ersetzen.
+            </div>
+            <div class="termin-container">
+                <div class="termin-card">
+                    <h4>Sitzung der Gemeindevertretung</h4>
+                    <p><span class="icon">📅</span> 15.08.2026</p>
+                    <p><span class="icon">🕒</span> 19:00 Uhr</p>
+                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                </div>
+                <div class="termin-card">
+                    <h4>Sitzung der Gemeindevertretung</h4>
+                    <p><span class="icon">📅</span> 12.09.2026</p>
+                    <p><span class="icon">🕒</span> 19:00 Uhr</p>
+                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ausschusssitzungen -->
+        <section id="termine-ausschuss">
+            <h2>Termine der Ausschüsse</h2>
+            <div class="placeholder-note">
+                Platzhalter-Termine – bitte durch echte Sitzungstermine der jeweiligen Ausschüsse ersetzen.
+            </div>
+            <div class="termin-container">
+                <div class="termin-card">
+                    <h4>Bauausschuss</h4>
+                    <p><span class="icon">📅</span> 05.08.2026</p>
+                    <p><span class="icon">🕒</span> 18:30 Uhr</p>
+                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                </div>
+                <div class="termin-card">
+                    <h4>Finanzausschuss</h4>
+                    <p><span class="icon">📅</span> 08.08.2026</p>
+                    <p><span class="icon">🕒</span> 18:00 Uhr</p>
+                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                </div>
+                <div class="termin-card">
+                    <h4>Sozial- und Kulturausschuss</h4>
+                    <p><span class="icon">📅</span> 20.08.2026</p>
+                    <p><span class="icon">🕒</span> 19:00 Uhr</p>
+                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Termine der Wählergemeinschaft -->
+        <section id="termine-wg">
+            <h2>Termine der Wählergemeinschaft</h2>
+            <div class="placeholder-note">
+                Platzhalter-Termine – bitte durch echte Veranstaltungen ersetzen. Zusätzlich zu Datum/Uhrzeit/Ort
+                gibt es hier ein Themen-Feld für den jeweiligen Anlass.
+            </div>
+            <div class="termin-container">
+                <div class="termin-card">
+                    <h4>Sommerfest der Wählergemeinschaft</h4>
+                    <p><span class="icon">📅</span> 15.08.2026</p>
+                    <p><span class="icon">🕒</span> 15:00 Uhr</p>
+                    <p><span class="icon">📍</span> Dorfplatz Schuby</p>
+                    <p><span class="icon">💬</span> <strong>Thema:</strong> Geselliges Beisammensein & Austausch mit Bürgern</p>
+                </div>
+                <div class="termin-card">
+                    <h4>Bürgersprechstunde</h4>
+                    <p><span class="icon">📅</span> 03.09.2026</p>
+                    <p><span class="icon">🕒</span> 17:00 Uhr</p>
+                    <p><span class="icon">📍</span> Gemeindebüro Schuby</p>
+                    <p><span class="icon">💬</span> <strong>Thema:</strong> Verkehrssituation Ortsdurchfahrt</p>
                 </div>
             </div>
         </section>
@@ -304,30 +511,45 @@
         <!-- Vorstand -->
         <section id="vorstand">
             <h2>Vorstand</h2>
+            <div class="placeholder-note">
+                Namen sind aktuell. E-Mail-Adressen sind vorläufig auf die allgemeine WGS-Adresse gesetzt –
+                bitte durch persönliche Adressen ersetzen, sobald verfügbar.
+            </div>
             <div class="card-container">
                 <div class="card">
-                    <div class="avatar">JD</div>
-                    <h3>John Doe</h3>
-                    <p><strong>Funktion:</strong> 1. Vorsitzender</p>
-                    <p>Verantwortlich für die Leitung der Wählergemeinschaft.</p>
+                    <div class="avatar"><img src="images/harald-mueller.jpg" alt="Harald Müller"></div>
+                    <h3>Harald Müller</h3>
+                    <p class="funktion">1. Vorsitzender</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
                 </div>
                 <div class="card">
-                    <div class="avatar">JS</div>
-                    <h3>Jane Smith</h3>
-                    <p><strong>Funktion:</strong> 2. Vorsitzende</p>
-                    <p>Unterstützt den Vorsitzenden in allen Belangen.</p>
+                    <div class="avatar"><img src="images/christoph-nickel.jpg" alt="Christoph Nickel"></div>
+                    <h3>Christoph Nickel</h3>
+                    <p class="funktion">2. Vorsitzender</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
                 </div>
                 <div class="card">
-                    <div class="avatar">MJ</div>
-                    <h3>Michael Johnson</h3>
-                    <p><strong>Funktion:</strong> Kassenwart</p>
-                    <p>Verantwortlich für die Finanzen der Wählergemeinschaft.</p>
+                    <div class="avatar">
+                        <svg viewBox="0 0 100 100" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Kopf -->
+                            <circle cx="50" cy="66" r="16" fill="#ffffff"/>
+                            <!-- Helmschale -->
+                            <path d="M20,52 Q20,16 50,16 Q80,16 80,52 Z" fill="#ffffff"/>
+                            <!-- Helmkamm (typisch für dt. Feuerwehrhelme) -->
+                            <path d="M46,16 Q50,8 54,16 L54,40 Q50,44 46,40 Z" fill="#ffffff" opacity="0.85"/>
+                            <!-- Helmkrempe -->
+                            <ellipse cx="50" cy="52" rx="34" ry="7" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                    <h3>Marco Kroymann-Meyer</h3>
+                    <p class="funktion">Kassenwart</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
                 </div>
                 <div class="card">
-                    <div class="avatar">VH</div>
+                    <div class="avatar"><img src="images/volker-hagge-ellhoeft.jpg" alt="Volker Hagge Ellhöft"></div>
                     <h3>Volker Hagge Ellhöft</h3>
-                    <p><strong>Funktion:</strong> Schriftwart</p>
-                    <p>Protokolliert Sitzungen und verwaltet Dokumente.</p>
+                    <p class="funktion">Schriftwart</p>
+                    <p class="detail-row"><a class="mail-link" href="mailto:waehlergemeinschaftschuby@gmail.com">waehlergemeinschaftschuby@gmail.com</a></p>
                 </div>
             </div>
         </section>
@@ -357,7 +579,7 @@
                     <button type="submit">Nachricht senden</button>
                 </form>
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--dark-gray);">
-                    <strong>E-Mail:</strong> wgs-schuby@gmail.com
+                    <strong>E-Mail:</strong> waehlergemeinschaftschuby@gmail.com
                 </p>
             </div>
         </section>
