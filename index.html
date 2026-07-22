@@ -7,11 +7,39 @@
     <style>
         :root {
             --primary-green: #5CB35C;
+            --primary-green-text: #2E7D32;
             --secondary-yellow: #FFD700;
             --secondary-blue: #0066CC;
             --light-gray: #f8f9fa;
             --dark-gray: #343a40;
             --white: #ffffff;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 0.75rem 1.25rem;
+            z-index: 100;
+            border-radius: 0 0 6px 0;
+        }
+
+        .skip-link:focus {
+            left: 0;
         }
 
         body {
@@ -24,7 +52,7 @@
         }
 
         header {
-            background-color: var(--primary-green);
+            background-color: var(--primary-green-text);
             color: var(--white);
             padding: 1rem 0;
             text-align: center;
@@ -95,7 +123,7 @@
         }
 
         h2 {
-            color: var(--primary-green);
+            color: var(--primary-green-text);
             border-bottom: 2px solid var(--primary-green);
             padding-bottom: 0.5rem;
         }
@@ -130,7 +158,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--primary-green);
+            background-color: var(--primary-green-text);
             color: var(--white);
             font-size: 2rem;
             font-weight: 700;
@@ -146,7 +174,7 @@
 
         .card h3 {
             margin: 0.5rem 0 0.25rem;
-            color: var(--primary-green);
+            color: var(--primary-green-text);
         }
 
         .card .funktion {
@@ -267,7 +295,7 @@
         }
 
         .contact-form button {
-            background-color: var(--primary-green);
+            background-color: var(--primary-green-text);
             color: var(--white);
             border: none;
             padding: 0.75rem 1.5rem;
@@ -278,11 +306,11 @@
         }
 
         .contact-form button:hover {
-            background-color: #4a9d4a;
+            background-color: #1e5c22;
         }
 
         footer {
-            background-color: var(--primary-green);
+            background-color: var(--primary-green-text);
             color: var(--white);
             text-align: center;
             padding: 1rem;
@@ -320,12 +348,17 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <h1>Wählergemeinschaft Schuby</h1>
     </header>
 
     <nav>
-        <button class="nav-toggle" aria-label="Menü öffnen/schließen" onclick="document.getElementById('hauptmenue').classList.toggle('open')">☰</button>
+        <button class="nav-toggle" id="nav-toggle-btn" aria-label="Menü öffnen/schließen" aria-expanded="false" aria-controls="hauptmenue" onclick="
+            var menu = document.getElementById('hauptmenue');
+            var expanded = menu.classList.toggle('open');
+            this.setAttribute('aria-expanded', expanded);
+        ">☰</button>
         <ul id="hauptmenue">
             <li><a href="#start">Start</a></li>
             <li><a href="#themen">Aktuelles</a></li>
@@ -343,11 +376,12 @@
         document.querySelectorAll('#hauptmenue a').forEach(function (link) {
             link.addEventListener('click', function () {
                 document.getElementById('hauptmenue').classList.remove('open');
+                document.getElementById('nav-toggle-btn').setAttribute('aria-expanded', 'false');
             });
         });
     </script>
 
-    <main>
+    <main id="main-content">
         <!-- Startseite -->
         <section id="start">
             <h2>Willkommen bei der Wählergemeinschaft Schuby</h2>
@@ -378,8 +412,8 @@
         <section id="gemeindevertreter">
             <h2>Gemeindevertreter</h2>
             <div class="placeholder-note">
-                Namen, Ausschüsse und Rollen sind aktuell. Fotos sind noch Platzhalter-Avatare mit Initialen –
-                sobald ein Foto vorliegt, kann das entsprechende <code>avatar</code>-Div durch ein &lt;img&gt;-Tag ersetzt werden.
+                E-Mail-Adressen sind noch vorläufig auf die allgemeine WGS-Adresse gesetzt –
+                bitte durch persönliche Adressen ersetzen, sobald verfügbar.
             </div>
             <div class="card-container">
 
@@ -442,15 +476,15 @@
             <div class="termin-container">
                 <div class="termin-card">
                     <h4>Sitzung der Gemeindevertretung</h4>
-                    <p><span class="icon">📅</span> 17.08.2026</p>
-                    <p><span class="icon">🕒</span> 19:30 Uhr</p>
-                    <p><span class="icon">📍</span> Sortlerheim Schuby</p>
+                    <p><span class="icon" aria-hidden="true">📅</span><span class="sr-only">Datum:</span> 15.08.2026</p>
+                    <p><span class="icon" aria-hidden="true">🕒</span><span class="sr-only">Uhrzeit:</span> 19:00 Uhr</p>
+                    <p><span class="icon" aria-hidden="true">📍</span><span class="sr-only">Ort:</span> Gemeindesaal Schuby</p>
                 </div>
                 <div class="termin-card">
                     <h4>Sitzung der Gemeindevertretung</h4>
-                    <p><span class="icon">📅</span> 12.09.2026</p>
-                    <p><span class="icon">🕒</span> 19:30 Uhr</p>
-                    <p><span class="icon">📍</span> Sortlerheim Schuby</p>
+                    <p><span class="icon" aria-hidden="true">📅</span><span class="sr-only">Datum:</span> 12.09.2026</p>
+                    <p><span class="icon" aria-hidden="true">🕒</span><span class="sr-only">Uhrzeit:</span> 19:00 Uhr</p>
+                    <p><span class="icon" aria-hidden="true">📍</span><span class="sr-only">Ort:</span> Gemeindesaal Schuby</p>
                 </div>
             </div>
         </section>
@@ -464,21 +498,21 @@
             <div class="termin-container">
                 <div class="termin-card">
                     <h4>Bau- und Wegeausschuss</h4>
-                    <p><span class="icon">📅</span> 05.08.2026</p>
-                    <p><span class="icon">🕒</span> 18:30 Uhr</p>
-                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                    <p><span class="icon" aria-hidden="true">📅</span><span class="sr-only">Datum:</span> 05.08.2026</p>
+                    <p><span class="icon" aria-hidden="true">🕒</span><span class="sr-only">Uhrzeit:</span> 18:30 Uhr</p>
+                    <p><span class="icon" aria-hidden="true">📍</span><span class="sr-only">Ort:</span> Gemeindesaal Schuby</p>
                 </div>
                 <div class="termin-card">
                     <h4>Finanzausschuss</h4>
-                    <p><span class="icon">📅</span> 08.08.2026</p>
-                    <p><span class="icon">🕒</span> 18:00 Uhr</p>
-                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                    <p><span class="icon" aria-hidden="true">📅</span><span class="sr-only">Datum:</span> 08.08.2026</p>
+                    <p><span class="icon" aria-hidden="true">🕒</span><span class="sr-only">Uhrzeit:</span> 18:00 Uhr</p>
+                    <p><span class="icon" aria-hidden="true">📍</span><span class="sr-only">Ort:</span> Gemeindesaal Schuby</p>
                 </div>
                 <div class="termin-card">
                     <h4>Ausschuss für Jugend, Sport, Kultur und Soziales</h4>
-                    <p><span class="icon">📅</span> 20.08.2026</p>
-                    <p><span class="icon">🕒</span> 19:00 Uhr</p>
-                    <p><span class="icon">📍</span> Gemeindesaal Schuby</p>
+                    <p><span class="icon" aria-hidden="true">📅</span><span class="sr-only">Datum:</span> 20.08.2026</p>
+                    <p><span class="icon" aria-hidden="true">🕒</span><span class="sr-only">Uhrzeit:</span> 19:00 Uhr</p>
+                    <p><span class="icon" aria-hidden="true">📍</span><span class="sr-only">Ort:</span> Gemeindesaal Schuby</p>
                 </div>
             </div>
         </section>
@@ -493,17 +527,17 @@
             <div class="termin-container">
                 <div class="termin-card">
                     <h4>Sommerfest der Wählergemeinschaft</h4>
-                    <p><span class="icon">📅</span> 15.08.2026</p>
-                    <p><span class="icon">🕒</span> 15:00 Uhr</p>
-                    <p><span class="icon">📍</span> Dorfplatz Schuby</p>
-                    <p><span class="icon">💬</span> <strong>Thema:</strong> Geselliges Beisammensein & Austausch mit Bürgern</p>
+                    <p><span class="icon" aria-hidden="true">📅</span><span class="sr-only">Datum:</span> 15.08.2026</p>
+                    <p><span class="icon" aria-hidden="true">🕒</span><span class="sr-only">Uhrzeit:</span> 15:00 Uhr</p>
+                    <p><span class="icon" aria-hidden="true">📍</span><span class="sr-only">Ort:</span> Dorfplatz Schuby</p>
+                    <p><span class="icon" aria-hidden="true">💬</span> <strong>Thema:</strong> Geselliges Beisammensein & Austausch mit Bürgern</p>
                 </div>
                 <div class="termin-card">
                     <h4>Bürgersprechstunde</h4>
-                    <p><span class="icon">📅</span> 03.09.2026</p>
-                    <p><span class="icon">🕒</span> 17:00 Uhr</p>
-                    <p><span class="icon">📍</span> Gemeindebüro Schuby</p>
-                    <p><span class="icon">💬</span> <strong>Thema:</strong> Verkehrssituation Ortsdurchfahrt</p>
+                    <p><span class="icon" aria-hidden="true">📅</span><span class="sr-only">Datum:</span> 03.09.2026</p>
+                    <p><span class="icon" aria-hidden="true">🕒</span><span class="sr-only">Uhrzeit:</span> 17:00 Uhr</p>
+                    <p><span class="icon" aria-hidden="true">📍</span><span class="sr-only">Ort:</span> Gemeindebüro Schuby</p>
+                    <p><span class="icon" aria-hidden="true">💬</span> <strong>Thema:</strong> Verkehrssituation Ortsdurchfahrt</p>
                 </div>
             </div>
         </section>
@@ -512,8 +546,8 @@
         <section id="vorstand">
             <h2>Vorstand</h2>
             <div class="placeholder-note">
-                Namen sind aktuell. E-Mail-Adressen sind vorläufig auf die allgemeine WGS-Adresse gesetzt –
-                bitte durch persönliche Adressen ersetzen, sobald verfügbar.
+                E-Mail-Adressen sind vorläufig auf die allgemeine WGS-Adresse gesetzt – bitte durch persönliche
+                Adressen ersetzen, sobald verfügbar. Foto von Marco Kroymann-Meyer steht noch aus (aktuell Icon-Platzhalter).
             </div>
             <div class="card-container">
                 <div class="card">
