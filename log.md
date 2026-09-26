@@ -1,5 +1,9 @@
 # Änderungsprotokoll – WGS Schuby Webseite
 
+## 26.09.2026 23:00 Uhr
+News: 1. Termine: 2 GV/1 Ausschuss/2 WG. Personen: 9 (0 neue Fotos). Flyer: unverändert. Startseite: 2 Absatz/Absätze.
+Bearbeitet von: Volker Hagge Ellhöft
+
 ## 25.09.2026 22:26 Uhr
 News: 1. Termine: 3 GV/2 Ausschuss/2 WG. Personen: 9 (0 neue Fotos). Flyer: unverändert. Startseite: 2 Absatz/Absätze.
 Bearbeitet von: Volker Hagge Ellhöft
